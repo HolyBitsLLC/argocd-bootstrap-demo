@@ -1,0 +1,47 @@
+# Step 1: Simulates LVI intents being processed.
+# Deploys a Deployment in the bootstrap-test namespace.
+# This CAN NOT be created unless step 0's namespace already exists (proves gating).
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bootstrap-intents
+  namespace: bootstrap-test
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+data:
+  intents-count: "3"
+  description: "Simulates LVI intents (PVC creation targets)"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intent-echo
+  namespace: bootstrap-test
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+    bootstrap-step: "01-intents"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: intent-echo
+  template:
+    metadata:
+      labels:
+        app: intent-echo
+    spec:
+      containers:
+        - name: echo
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          env:
+            - name: BOOTSTRAP_STEP
+              value: "01-intents"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 3

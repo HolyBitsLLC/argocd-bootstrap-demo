@@ -1,0 +1,31 @@
+# Step 2: Simulates cluster-readonly RBAC bootstrap.
+# Creates ClusterRole + ClusterRoleBinding for the readonly viewer.
+# Depends on step 1 being Healthy (cluster API functional, intents processed).
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: bootstrap-demo-reader
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+    bootstrap-step: "02-rbac"
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps", "pods", "services"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: bootstrap-demo-reader
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+    bootstrap-step: "02-rbac"
+subjects:
+  - kind: Group
+    name: system:authenticated
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: bootstrap-demo-reader
+  apiGroup: rbac.authorization.k8s.io

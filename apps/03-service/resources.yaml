@@ -1,0 +1,30 @@
+# Step 3: Simulates application service layer.
+# Creates a Service targeting the intent-echo Deployment from step 1.
+# Depends on step 2 being Healthy (RBAC exists, cluster is fully operational).
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bootstrap-demo-svc
+  namespace: bootstrap-test
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+    bootstrap-step: "03-service"
+spec:
+  selector:
+    app: intent-echo
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bootstrap-complete
+  namespace: bootstrap-test
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+data:
+  status: "complete"
+  message: "All 4 bootstrap steps deployed successfully with health gating"
+  steps-completed: "00-lvi, 01-intents, 02-rbac, 03-service"

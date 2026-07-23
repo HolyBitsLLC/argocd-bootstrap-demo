@@ -1,0 +1,21 @@
+# Step 0: Simulates LVI Operator installation.
+# Creates a namespace and a ConfigMap that acts as the "CRD installed" signal.
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bootstrap-test
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bootstrap-dependencies
+  namespace: bootstrap-test
+  labels:
+    app.kubernetes.io/part-of: bootstrap-demo
+data:
+  lvi-operator-installed: "true"
+  installed-at: "step-0"
+  description: "Simulates the LVI operator CRD being registered"
