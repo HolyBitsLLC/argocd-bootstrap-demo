@@ -32,19 +32,19 @@ spec:
           - name: bootstrap-00-lvi
             path: apps/00-lvi
             group: "00-lvi"
-            description: "LVI Operator (CRD + namespace)"
+            
           - name: bootstrap-01-intents
             path: apps/01-intents
             group: "01-intents"
-            description: "LVI Intents (Deployments in ns)"
+            
           - name: bootstrap-02-rbac
             path: apps/02-rbac
             group: "02-rbac"
-            description: "Cluster RBAC"
+            
           - name: bootstrap-03-service
             path: apps/03-service
             group: "03-service"
-            description: "Service layer"
+            
   strategy:
     type: RollingSync
     rollingSync:
@@ -79,7 +79,6 @@ spec:
       labels:
         bootstrap-group: "{{ .group }}"
         app.kubernetes.io/part-of: bootstrap-demo
-        bootstrap-description: "{{ .description }}"
     spec:
       project: default
       source:
