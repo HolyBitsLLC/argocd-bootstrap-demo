@@ -83,7 +83,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/HolyBitsLLC/harvester-argo.git
+        repoURL: https://github.com/HolyBitsLLC/argocd-bootstrap-demo.git
         targetRevision: HEAD
         path: "{{ .path }}"
       destination:
