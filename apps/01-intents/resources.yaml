@@ -8,6 +8,7 @@ metadata:
   name: bootstrap-intents
   namespace: bootstrap-test
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
 data:
   intents-count: "3"
@@ -19,6 +20,7 @@ metadata:
   name: intent-echo
   namespace: bootstrap-test
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
     bootstrap-step: "01-intents"
 spec:
@@ -29,6 +31,7 @@ spec:
   template:
     metadata:
       labels:
+    rolling-sync-test: "take-1"
         app: intent-echo
     spec:
       containers:

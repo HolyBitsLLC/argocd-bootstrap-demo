@@ -6,6 +6,7 @@ kind: Namespace
 metadata:
   name: bootstrap-test
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
 ---
 apiVersion: v1
@@ -14,6 +15,7 @@ metadata:
   name: bootstrap-dependencies
   namespace: bootstrap-test
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
 data:
   lvi-operator-installed: "true"

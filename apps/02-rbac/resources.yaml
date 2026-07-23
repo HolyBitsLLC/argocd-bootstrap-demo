@@ -7,6 +7,7 @@ kind: ClusterRole
 metadata:
   name: bootstrap-demo-reader
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
     bootstrap-step: "02-rbac"
 rules:
@@ -19,6 +20,7 @@ kind: ClusterRoleBinding
 metadata:
   name: bootstrap-demo-reader
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
     bootstrap-step: "02-rbac"
 subjects:

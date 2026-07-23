@@ -8,6 +8,7 @@ metadata:
   name: bootstrap-demo-svc
   namespace: bootstrap-test
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
     bootstrap-step: "03-service"
 spec:
@@ -23,6 +24,7 @@ metadata:
   name: bootstrap-complete
   namespace: bootstrap-test
   labels:
+    rolling-sync-test: "take-1"
     app.kubernetes.io/part-of: bootstrap-demo
 data:
   status: "complete"
