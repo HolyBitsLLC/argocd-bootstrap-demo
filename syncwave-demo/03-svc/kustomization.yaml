@@ -5,4 +5,3 @@ commonAnnotations:
 namespace: syncwave-demo
 resources:
   - service.yaml
-  - done.yaml
