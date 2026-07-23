@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bootstrap-state
+data:
+  wave-0-installed: "true"
+  started-at: "wave-0"

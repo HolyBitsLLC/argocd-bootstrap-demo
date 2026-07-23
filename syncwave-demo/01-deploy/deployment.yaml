@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wave-echo
+  labels:
+    app.kubernetes.io/part-of: syncwave-demo
+    wave: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wave-echo
+  template:
+    metadata:
+      labels:
+        app: wave-echo
+    spec:
+      containers:
+        - name: echo
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            failureThreshold: 3

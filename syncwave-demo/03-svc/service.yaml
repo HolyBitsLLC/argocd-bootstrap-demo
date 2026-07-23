@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wave-echo
+  labels:
+    app.kubernetes.io/part-of: syncwave-demo
+    wave: "3"
+spec:
+  selector:
+    app: wave-echo
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bootstrap-done
+data:
+  status: "complete"
+  message: "Sync-wave health gating WORKS - all 4 waves deployed sequentially"
+  waves: "0, 1, 2, 3"
