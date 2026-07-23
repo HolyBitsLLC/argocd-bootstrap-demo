@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: echo
-          image: nginx:does-not-exist-v999
+          image: nginx:alpine
           ports:
             - containerPort: 80
           readinessProbe:
